@@ -1,0 +1,11 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  transition: all 300ms;
+  box-sizing: border-box;
+} * {
+  padding: 0px;
+  margin: 0px;
+  transition: all 300ms;
+  box-sizing: border-box;
+}
