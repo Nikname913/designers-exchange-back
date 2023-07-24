@@ -7,12 +7,6 @@ var livereload = require('livereload')
 var connectLiveReload = require('connect-livereload')
 var cors = require('cors')
 
-// const server = require('http').createServer(express)
-// const socket = require('socket.io')(server)
-
-// socket.on('connection', socket => {})
-// server.listen(3333)
-
 const liveReloadServer = livereload.createServer()
 
 liveReloadServer.server.once("connection", () => {
@@ -26,6 +20,7 @@ var usersGetRouter = require('./routes/users/usersGet')
 var usersAddRouter = require('./routes/users/usersAdd')
 var usersAddDocsRouter = require('./routes/users/usersAddDocs')
 var usersRemoveRouter = require('./routes/users/usersRemove')
+var usersAddBorth = require('./routes/users/usersAddBorth')
 
 var authGetRouter = require('./routes/auth/authGet')
 var authAddRouter = require('./routes/auth/authAdd')
@@ -43,6 +38,8 @@ var executorAddRouter = require('./routes/tasks/executorAdd')
 
 var alarmsAddRouter = require('./routes/dataAlarms/alarmAdd')
 var addFileTechTask = require('./routes/filesystem/addFile.techtask')
+
+var checkFaceName = require('./routes/checkFaceName')
 
 var app = express()
 
@@ -75,6 +72,7 @@ app.use('/', defaultRouter)
 app.use('/users', usersGetRouter)
 app.use('/add-user', usersAddRouter)
 app.use('/add-user-docs', usersAddDocsRouter)
+app.use('/add-user-borth', usersAddBorth)
 app.use('/remove-user', usersRemoveRouter)
 
 app.use('/auth', authGetRouter)
@@ -94,6 +92,8 @@ app.use('/remove-respond', respondRemoveRouter)
 app.use('/add-alarm-in-task', alarmsAddRouter)
 
 app.use('/add-file-techtask', addFileTechTask)
+
+app.use('/check-face', checkFaceName)
 
 app.use(function(req, res, next) {
   false && console.log(req)

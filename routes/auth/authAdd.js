@@ -5,7 +5,7 @@ var fs         = require('fs')
 
 router.post('/', function(req, res) {
   
-  const { email, password, type, name, surname, secondName, number, faceType = '' } = req.body
+  const { email, password, type, name, surname, secondName, number, faceType = '', specArr } = req.body
   const authFile = './dataBase/auth.json'
   const usersFile = './dataBase/users.json'
 
@@ -135,7 +135,7 @@ router.post('/', function(req, res) {
         snils:"",
         inn:""
       },
-      spec: [],
+      spec: specArr.length > 0 ? [ specArr ] : [],
       reviews: [],
       portfolio: [],
       educationAndSkills: [],
@@ -150,12 +150,26 @@ router.post('/', function(req, res) {
 
     filterUsersList.users.push(userItem)
 
+    // -----------------------------------------
+    // -----------------------------------------
+    // const transporter = nodemailer.createTransport({
+    //   port: 465,
+    //   host: "smtp.gmail.com",
+    //   auth: {
+    //     user: 'nik.shipov@gmail.com',
+    //     pass: 'ftmfdxiphdpufxii',
+    //   },
+    //   secure: true,
+    // })
+    // -----------------------------------------
+    // -----------------------------------------
+
     const transporter = nodemailer.createTransport({
       port: 465,
       host: "smtp.gmail.com",
       auth: {
-        user: 'nik.shipov@gmail.com',
-        pass: 'ftmfdxiphdpufxii',
+        user: 'techsystems.exchange@gmail.com',
+        pass: 'jjtukhxkbfykrrjd',
       },
       secure: true,
     })
