@@ -36,6 +36,26 @@ router.post('/', function(req, res) {
       })
       item.focused = 'new'
 
+      const messageString = 'null::Поступил новый отклик на ваш заказ ' + taskID + '. Откликнулся пользователь ' + executorID
+
+      if ( item.alertData ) {
+
+        item.alertData.push({
+          initiator: executorID,
+          message: messageString
+        })
+
+      } else {
+
+        item.alertData = []
+        
+        item.alertData.push({
+          initiator: executorID,
+          message: messageString
+        })
+
+      }
+
     }
 
     return item

@@ -1,36 +1,13 @@
-var nodemailer = require('nodemailer')
 var express    = require('express')
 var router     = express.Router()
 
-const MainPage = require('../views/main-page')
+const SupportPage = require('../../views/show-support-page')
 
 router.get('/', function(req, res) {
 
-  const transporter = nodemailer.createTransport({
-    port: 465,
-    host: "smtp.gmail.com",
-    auth: {
-        user: 'nik.shipov@gmail.com',
-        pass: 'ftmfdxiphdpufxii',
-    },
-    secure: true,
-  })
-
-  false && transporter.sendMail({
-    from: 'nik.shipov@gmail.com',
-    to: 'nik.shipov@yandex.ru',
-    subject: 'Message from Express',
-    text: 'this message was sent from node js server',
-    html:
-      '<span>meesage example</span>',
-  }, (error, info) => {
-      if (error) { return console.log(error) }
-      res.status(200).send({ message: "Mail send", message_id: info.messageId })
-  })
-
   const IP = req.ip.split('::')[1].split(':')[1]
 
-  const message = MainPage({ IP })
+  const message = SupportPage()
 
   res.send(message)
 

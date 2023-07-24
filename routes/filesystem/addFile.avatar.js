@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     false && console.log(file)
     bodyData = req.body
     
-    cb(null, './techDocs')
+    cb(null, './techAvatars')
   
   },
   filename: function (req, file, cb) {
@@ -18,13 +18,13 @@ const storage = multer.diskStorage({
     false && cb(null, file.originalname.split('.')[0] + '.' + bodyData.taskID + '.' + file.mimetype.split('/')[1])
     false && cb(null, file.originalname.split('.')[0] + '.' + req.body.taskID + '.' + 'docx')
 
-    cb(null, file.originalname.split('.')[0] + '.' + 'docx')
+    cb(null, bodyData.userAvatarId + '.avatar' + '.' + file.originalname.split('.')[1])
   }
 })
 
 const upload = multer({ storage: storage })
 
-router.post('/', upload.single('taskTechDocsFile'), function (req, res) {
+router.post('/', upload.single('userAvatarFile'), function (req, res) {
 
   res.send(req.body)
 

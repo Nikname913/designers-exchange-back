@@ -28,6 +28,8 @@ router.post('/', function(req, res) {
     }
   })
 
+  borth = '29.12.1993'
+
   // ----------------------------------------------------------------
   // https://api-fns.ru/api/innfl
   //  ?fam=шипов
@@ -45,7 +47,37 @@ router.post('/', function(req, res) {
 
   const urlDemo = `https://api-fns.ru/api/innfl?fam=${surName}&nam=${name}&otch=${secondName}&bdate=${borth}` + '&docno=' + series + number + '&key=59e55219511f91d7b35785b694fcdff24fbb50d3'
 
-  request(
+  // -----------------------------------------
+  // на время исчерпания лимита апи
+  // -----------------------------------------
+  
+  checkedInn = inn + '*'
+
+  users.users.forEach(user => {
+    if ( user.clientId === clientId ) {
+
+      user.docs = {
+        
+        passport: { series, number, date, whoGet }, isValidPassport: false, adress, snils, inn: checkedInn
+      
+      }
+
+    }
+  })
+
+  fs.writeFile(usersFile, JSON.stringify(users), error => {
+    
+    if (error) throw error
+  
+  })
+
+  res.send(checkedInn)
+
+  // -----------------------------------------
+  // на время исчерпания лимита апи
+  // -----------------------------------------
+
+  false && request(
     encodeURI(urlDemo),
     ( error, response, body ) => {
       if ( error ) {

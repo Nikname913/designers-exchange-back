@@ -82,7 +82,9 @@ router.post('/', function(req, res) {
       portfolio: [],
       educationAndSkills: [],
       team: [],
-      aboutText:""
+      aboutText:"",
+      avatar: "",
+      personalAvatar: ""
     }],
     users: usersData.filter(user => user.mail !== `*${email}`) 
   }
@@ -140,7 +142,14 @@ router.post('/', function(req, res) {
       portfolio: [],
       educationAndSkills: [],
       team: [],
-      aboutText:""
+      aboutText:"",
+      avatar: "1",
+      personalAvatar: "",
+      alertData: [
+        { message: 'Поздравляем, вы успешно зарегистрировались в платформе "Приложение: Биржа проектировщиков". Для комфортного знакомства с системой рекомендуем вам пройти наш модуль обучения', 
+          type: 'success', 
+          actions: []}
+      ]
     }
 
     filterAuthList.users.push(authItem)
