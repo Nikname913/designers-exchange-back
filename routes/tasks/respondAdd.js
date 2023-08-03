@@ -13,7 +13,8 @@ router.post('/', function(req, res) {
     prePay = '',
     expert = '',
     expertCoast = '',
-    comment = '' } = req.body
+    comment = '',
+    execSpec = [] } = req.body
   const tasksFile = './dataBase/tasks.json'
 
   const tasksData = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
@@ -32,7 +33,8 @@ router.post('/', function(req, res) {
         prePay,
         expert,
         expertCoast,
-        comment
+        comment,
+        execSpec
       })
       item.focused = 'new'
 

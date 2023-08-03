@@ -23,20 +23,29 @@ const css = {
   `,
   menuItem: `
     display: block;
-    line-height: 24px;
+    line-height: 30px;
     cursor: pointer;
   `
 }
 
 const MainPage = ({ IP }) => {
 
-  return `<div style="${ css.contentContainer }" style="display: flex; flex-direction: column;">
-    <h3 style="${ css.pageTilte }">Добро пожаловать в серверную часть приложения биржи проектировщиков. Ваш ip-адрес ${IP}</h3>
-    <span style="${ css.menuItem }">Просмотр доступных методов              *</span>
-    <span style="${ css.menuItem }">Переход в админ-панель приложения       *</span>
-    <span style="${ css.menuItem }">Просмотр сырых данных приложения        *</span>
-    <span style="${ css.menuItem }">Обращения пользователей в техподдержку  *</span>
-  </div>
+  return `
+    <div style="${ css.contentContainer }" style="display: flex; flex-direction: column;">
+      <h3 style="${ css.pageTilte }">Добро пожаловать в серверную часть приложения биржи проектировщиков. Ваш ip-адрес ${IP}</h3>
+      <span style="${ css.menuItem }">
+        <a href="/#">Просмотр доступных методов</a>
+      </span>
+      <span style="${ css.menuItem }">
+        <a href="/#">Переход в админ-панель приложения</a>
+      </span>
+      <span style="${ css.menuItem }">
+        <a href="8000/data">Просмотр сырых данных приложения</a>
+      </span>
+      <span style="${ css.menuItem }">
+        <a href="8000/support">Обращения пользователей в техподдержку</a>
+      </span>
+    </div>
   `
 
 }

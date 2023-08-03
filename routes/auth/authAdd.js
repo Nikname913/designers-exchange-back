@@ -33,8 +33,6 @@ router.post('/', function(req, res) {
   const usersData = JSON.parse(fs.readFileSync('./dataBase/users.json', 'utf-8')).users
   const usersTemplate = JSON.parse(fs.readFileSync('./dataBase/users.json', 'utf-8')).userTemplate
 
-  // {"userTemplate":{"login":"","password":"","rootId":"","clientId":""}, "users": [{"login":"nik.shipov@gmail.com","password":"Qwerty12345","rootId":"13nik9","clientId":"13nik9"}]}
-
   const filterAuthList = { 
     userTemplate: { 
       login: "", 

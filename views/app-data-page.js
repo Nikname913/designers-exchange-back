@@ -1,5 +1,3 @@
-var fs = require('fs')
-
 const css = {
   contentContainer: `
     display: flex;
@@ -47,26 +45,14 @@ const css = {
   `
 }
 
-const ShowSupportPage = () => {
-
-  let messagesList = JSON.parse(fs.readFileSync('./dataBaseAdmin/messages.json', 'utf-8'))
+const AppDataPage = () => {
 
   return `
     <div style="${ css.contentContainer }" style="display: flex; flex-direction: column;">
-      <h3 style="${ css.pageTilte }">Визуализация данных из базы по всем обращениям в техподдержку</h3>
-      <div>
-        <input
-          style="${ css.inputPassword }"
-          type="text"
-          placeholder="Подтвердите root права паролем"
-          maxlength="20"
-          disabled
-        />
-        <span style="${ css.menuItem }">Подтвердить пароль</span>
-      </div>
+      <h3 style="${ css.pageTilte }">Загруженные в приложение данные</h3>
     </div>
   `
 
 }
 
-module.exports = ShowSupportPage
+module.exports = AppDataPage

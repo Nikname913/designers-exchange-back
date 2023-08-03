@@ -5,25 +5,21 @@ var fs      = require('fs')
 router.post('/', function(req, res) {
 
   const data = req.body
-  const usersFile = './dataBase/users.json'
+  const messagesFile = './dataBaseAdmin/messages.json'
 
-  const { borth, clientId } = data
+  const { userId, userName, userMail, message, category } = data
 
-  let users = JSON.parse(fs.readFileSync('./dataBase/users.json', 'utf-8'))
+  let messages = JSON.parse(fs.readFileSync('./dataBaseAdmin/messages.json', 'utf-8'))
 
-  users.users.forEach(user => {
-    if ( user.clientId === clientId ) {
+  messages.data.push({ userId, userName, userMail, message, category })
 
-      user.bio.borth = borth
-
-    }
-  })
-
-  fs.writeFile(usersFile, JSON.stringify(users), error => {
+  fs.writeFile(messagesFile, JSON.stringify(messages), error => {
 
     if (error) throw error
   
   })
+
+  res.send('Ваше обращение было доставлено')
 
 })
 

@@ -19,6 +19,8 @@ liveReloadServer.server.once("connection", () => {
 
 var defaultRouter = require('./routes/default')
 var showSupportPage = require('./routes/admin/usersSupport')
+var appDataPage = require('./routes/admin/appData')
+var sendSupportMessage = require('./routes/admin/messageSupport')
 
 // ----------------------------------------
 // ----------------------------------------
@@ -36,8 +38,10 @@ var usersChangeAbout = require('./routes/users/usersChangeAbout')
 var authGetRouter = require('./routes/auth/authGet')
 var authAddRouter = require('./routes/auth/authAdd')
 var authCheckReg = require('./routes/auth/authCheckReg')
+var authRestorePassword = require('./routes/auth/authRestorePassword')
 
 var taskAddRouter = require('./routes/tasks/taskAdd')
+var taskEditRouter = require('./routes/tasks/taskEdit')
 var taskGetRouter = require('./routes/tasks/taskGet')
 var taskGetListRouter = require('./routes/tasks/taskGetList')
 var taskActiveChangeRouter = require('./routes/tasks/taskActiveChange')
@@ -52,7 +56,9 @@ var alarmsSystemAddRouter = require('./routes/dataAlarms/alarmSystemAdd')
 var alarmsSystemRemoveRouter = require('./routes/dataAlarms/alarmSystemRemove')
 
 var addFileTechTask = require('./routes/filesystem/addFile.techtask')
+var addFileOrderContract = require('./routes/filesystem/addFile.contract')
 var sendFileTechTask = require('./routes/filesystem/sendFile.techtask')
+var sendFileContract = require('./routes/filesystem/sendFile.contract')
 var userAvatarFile = require('./routes/filesystem/addFile.avatar')
 
 var checkFaceName = require('./routes/checkFaceName')
@@ -90,9 +96,57 @@ app.use(function (req, res, next) {
 // ----------------------------------------
 // ----------------------------------------
 
+app.use('/', defaultRouter)
+app.use('/8000/support', showSupportPage)
+app.use('/8000/data', appDataPage)
+app.use('/8000/sendSupportMessage', sendSupportMessage)
+
+app.use('/users', usersGetRouter)
+app.use('/add-user', usersAddRouter)
+app.use('/add-user-docs', usersAddDocsRouter)
+app.use('/add-user-company', usersAddCompanyRouter)
+app.use('/add-user-borth', usersAddBorth)
+app.use('/remove-user', usersRemoveRouter)
+app.use('/change-user-avatar', usersChangeAvatar)
+app.use('/change-user-spec', usersChangeSpec)
+app.use('/change-user-about', usersChangeAbout)
+
+app.use('/auth', authGetRouter)
+app.use('/add-auth', authAddRouter)
+app.use('/check-auth', authCheckReg)
+app.use('/restore-pass', authRestorePassword)
+
+app.use('/add-task', taskAddRouter)
+app.use('/edit-task', taskEditRouter)
+app.use('/get-task', taskGetRouter)
+app.use('/get-task-list', taskGetListRouter)
+app.use('/change-task-status', taskActiveChangeRouter)
+
+app.use('/add-respond', respondAddRouter)
+app.use('/add-executor-in-task', executorAddRouter)
+app.use('/remove-respond-one', respondRemoveOneRouter)
+app.use('/remove-respond', respondRemoveRouter)
+
+app.use('/add-alarm-in-task', alarmsAddRouter)
+app.use('/add-alarm-system', alarmsSystemAddRouter)
+app.use('/remove-alarm-system', alarmsSystemRemoveRouter)
+
+app.use('/add-file-avatar', userAvatarFile)
+app.use('/add-file-contract', addFileOrderContract)
+// ----------------------------------------
+// app.use('/add-file-techtask', addFileTechTask)
+// ----------------------------------------
+app.use('/send-file-techtask', sendFileTechTask)
+app.use('/send-file-contract', sendFileContract)
+
+app.use('/check-face', checkFaceName)
+
+// ----------------------------------------
+// ----------------------------------------
+
 let bodyData = ''
 
-const storage = multer.diskStorage({
+const storage1 = multer.diskStorage({
 
   destination: function (req, file, cb) {
 
@@ -119,7 +173,7 @@ const storage = multer.diskStorage({
 
 app.use(express.static(__dirname))
 
-app.use(multer({ storage: storage }).single('taskTechDocsFile'))
+app.use(multer({ storage: storage1 }).single('taskTechDocsFile'))
 
 app.post("/add-file-techtask", function (req, res, next) {
    
@@ -137,45 +191,6 @@ app.post("/add-file-techtask", function (req, res, next) {
 
 // ----------------------------------------
 // ----------------------------------------
-
-app.use('/', defaultRouter)
-app.use('/8000/support', showSupportPage)
-
-app.use('/users', usersGetRouter)
-app.use('/add-user', usersAddRouter)
-app.use('/add-user-docs', usersAddDocsRouter)
-app.use('/add-user-company', usersAddCompanyRouter)
-app.use('/add-user-borth', usersAddBorth)
-app.use('/remove-user', usersRemoveRouter)
-app.use('/change-user-avatar', usersChangeAvatar)
-app.use('/change-user-spec', usersChangeSpec)
-app.use('/change-user-about', usersChangeAbout)
-
-app.use('/auth', authGetRouter)
-app.use('/add-auth', authAddRouter)
-app.use('/check-auth', authCheckReg)
-
-app.use('/add-task', taskAddRouter)
-app.use('/get-task', taskGetRouter)
-app.use('/get-task-list', taskGetListRouter)
-app.use('/change-task-status', taskActiveChangeRouter)
-
-app.use('/add-respond', respondAddRouter)
-app.use('/add-executor-in-task', executorAddRouter)
-app.use('/remove-respond-one', respondRemoveOneRouter)
-app.use('/remove-respond', respondRemoveRouter)
-
-app.use('/add-alarm-in-task', alarmsAddRouter)
-app.use('/add-alarm-system', alarmsSystemAddRouter)
-app.use('/remove-alarm-system', alarmsSystemRemoveRouter)
-
-app.use('/add-file-avatar', userAvatarFile)
-// ----------------------------------------
-// app.use('/add-file-techtask', addFileTechTask)
-// ----------------------------------------
-app.use('/send-file-techtask', sendFileTechTask)
-
-app.use('/check-face', checkFaceName)
 
 app.use(function(req, res, next) {
   false && console.log(req)

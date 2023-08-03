@@ -24,25 +24,8 @@ router.post('/', function(req, res) {
     tags = ['undefined', 'undefined', 'undefined'] } = req.body
     const tasksFile = './dataBase/tasks.json'
 
-    const nowDate = new Date()
-    let yyyy = nowDate.getFullYear()
-    let mm = nowDate.getMonth() + 1
-    let dd = nowDate.getDate()
-
-    let h = nowDate.getHours()
-    let m = nowDate.getMinutes()
-    let s = nowDate.getSeconds()
-
-    // ----------------------------------------------------------------
-    // CHMS - create hours * minutes * seconds
-    // NTID - new task ID
-    // ----------------------------------------------------------------
-
-    const taskDate = `${dd}-${mm}-${yyyy}-CHMS-${h}-${m}-${s}`
-
-    let tasksData = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
     let taskItem = {
-      taskID: taskDate + '-NTID-' + taskId,
+      taskID: '',
       customer,
       executor: "Исполнитель не выбран",
       date,
@@ -53,7 +36,7 @@ router.post('/', function(req, res) {
         start: dateStart,
         finish: dateFinish
       },
-      tags,
+      tags: ['undefined', 'undefined', 'undefined'],
       coast,
       prepay,
       prepayDays,
@@ -75,7 +58,30 @@ router.post('/', function(req, res) {
       chapters: chapters
     }
 
-    tasksData.tasks.push(taskItem)
+    let tasksData = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
+
+    tasksData.tasks.forEach(item => {
+
+      if ( item.taskID === taskId ) {
+
+        if ( title !== '' ) item.title = title
+        if ( dateStart ) item.dates.start = dateStart
+        if ( dateFinish ) item.dates.finish = dateFinish
+        if ( tags.length > 0 ) item.tags = tags
+        if ( coast !== '' ) item.coast = coast
+        if ( prepay !== '' ) item.prepay = prepay
+        if ( prepayDays !== '' ) item.prepayDays = prepayDays
+        if ( expertDays ) item.expertiseDays = expertDays
+        if ( expertCoast !== '' ) item.expertiseCoast = expertCoast
+        if ( square !== '' ) item.objectParams.square = square
+        if ( storeys !== '' ) item.objectParams.storeys = storeys
+        if ( height !== '' ) item.objectParams.height = height
+        if ( description !== '' ) item.description = description
+        if ( chapters.length > 0 ) item.chapters = chapters
+
+      }
+
+    })
 
     fs.writeFile(tasksFile, JSON.stringify(tasksData), error => {
 
