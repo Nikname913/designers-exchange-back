@@ -24,8 +24,11 @@ router.post('/', function(req, res) {
 
     if ( iterItem.taskID === taskID && iterItem.status === 'TASK-ACTIVE' ) {
 
+      let progress = 100 / ( item.chapters.length + 3 )
+
       iterItem.executor = executorID
       iterItem.status = 'ORDER-ACTIVE'
+      iterItem.progress = progress
 
     }
 
@@ -66,7 +69,7 @@ router.post('/', function(req, res) {
     taskTemplate: tasksData.taskTemplate,
     tasks: tasksListNew
   }
-
+  
   const newArrayDataUsers = {
     userTemplate: usersData.userTemplate,
     users: usersListNew

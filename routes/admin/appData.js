@@ -1,5 +1,6 @@
 var express    = require('express')
 var router     = express.Router()
+var fs         = require('fs')
 
 const AppDataPage = require('../../views/app-data-page.js')
 
@@ -7,7 +8,15 @@ router.get('/', function(req, res) {
 
   const IP = req.ip.split('::')[1].split(':')[1]
 
-  const message = AppDataPage()
+  const users = JSON.parse(fs.readFileSync('./dataBase/users.json', 'utf-8'))
+  const tasks = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
+
+  const componentData = {
+    USERS: users.users,
+    TASKS: tasks.tasks
+  } 
+
+  const message = AppDataPage(componentData)
 
   res.send(message)
 

@@ -70,10 +70,35 @@ router.post('/', function(req, res) {
   false && res.send(JSON.stringify(newAuth))
 
   // ----------------------------------------------------------------
+  // ----------------------------------------------------------------
+
+  let usersDeleteChange = users.users.map(userOne => {
+
+    if ( userOne.clientId === clientId ) {
+
+      userOne.type = 'DELETED::' + userOne.type
+      userOne.aboutText = ''
+      userOne.alertData = []
+      userOne.avatar = '1'
+      userOne.portfolio = []
+      userOne.docs = { shortName: 'deleted' }
+      userOne.bio = { name: 'deleted' }
+
+    }
+
+    return userOne
+
+  })
+  
+  const newUsersRemove = {
+    userTemplate: newUserTemplate,
+    users: usersDeleteChange
+  }
+  
   // удаление данных из базы users
   // ----------------------------------------------------------------
 
-  fs.writeFile(usersFile, JSON.stringify(newUsers), error => {
+  false && fs.writeFile(usersFile, JSON.stringify(newUsersRemove), error => {
 
     if (error) throw error
     false && res.send('данные о пользователе удалены')

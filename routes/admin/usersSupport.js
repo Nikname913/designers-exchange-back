@@ -1,13 +1,19 @@
 var express    = require('express')
 var router     = express.Router()
+var fs         = require('fs')
 
 const SupportPage = require('../../views/show-support-page')
 
 router.get('/', function(req, res) {
 
   const IP = req.ip.split('::')[1].split(':')[1]
+  const messages = JSON.parse(fs.readFileSync('./dataBaseAdmin/messages.json', 'utf-8'))
 
-  const message = SupportPage()
+  const componentData = {
+    MESS: messages.data
+  }
+
+  const message = SupportPage(componentData)
 
   res.send(message)
 
