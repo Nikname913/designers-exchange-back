@@ -162,6 +162,7 @@ const AppDataPage = (data) => {
                 box-sizing: border-box;
                 width: 440px;
                 text-align: right;
+                line-height: 22px;
               ">${ task.title }</span>
             <span style="${ css.useItemDelimiter }"></span>
             <span 

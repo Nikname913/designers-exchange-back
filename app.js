@@ -59,7 +59,7 @@ var alarmsSystemRemoveRouter = require('./routes/dataAlarms/alarmSystemRemove')
 
 var addFileTechTask = require('./routes/filesystem/addFile.techtask')
 var addFileOrderContract = require('./routes/filesystem/addFile.contract')
-var addFileOrderComplete = require('./routes/tasks/orderComplete')
+var addFileOrderComplete = require('./routes/filesystem/addFile.complete')
 var addFileCase = require('./routes/filesystem/addFile.portfolio')
 var sendFileTechTask = require('./routes/filesystem/sendFile.techtask')
 var sendFileContract = require('./routes/filesystem/sendFile.contract')

@@ -1,5 +1,6 @@
 var express    = require('express')
 var router     = express.Router()
+var fs         = require('fs')
 
 const multer = require('multer')
 
@@ -25,6 +26,45 @@ const storageContract = multer.diskStorage({
 const upload = multer({ storage: storageContract })
 
 router.post('/', upload.single('orderContractFile'), function (req, res) {
+
+  const tasksFile = './dataBase/tasks.json'
+  const tasksData = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
+  const tasksList = tasksData.tasks
+
+  const tasksListNew = []
+
+  tasksList.forEach(item => {
+
+    let iterItem = item
+    if ( iterItem.taskID === req.body.orderId ) {
+
+      if ( iterItem.communication ) { 
+        iterItem.communication.push({
+          type: 'CONTRACT_CHANGE', 
+          message: 'Предложен новый договор. Новая версия в Мастер-документах' 
+        }) 
+      }
+      else { iterItem.communication = [{
+        type: 'CONTRACT_CHANGE', 
+        message: 'Предложен новый договор. Новая версия в Мастер-документах' 
+      }] }
+
+    }
+
+    tasksListNew.push(iterItem)
+
+  })
+
+  const newArrayData = {
+    taskTemplate: tasksData.taskTemplate,
+    tasks: tasksListNew
+  }
+
+  fs.writeFile(tasksFile, JSON.stringify(newArrayData), error => {
+
+    if (error) throw error
+  
+  })
 
   res.send(req.body)
 

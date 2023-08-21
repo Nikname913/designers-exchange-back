@@ -19,7 +19,7 @@ const storageComplete = multer.diskStorage({
     false && cb(null, file.originalname.split('.')[0] + '.' + bodyData.taskID + '.' + file.mimetype.split('/')[1])
     false && cb(null, file.originalname.split('.')[0] + '.' + req.body.taskID + '.' + 'docx')
 
-    cb(null, bodyData.orderId + '.complete' + '.' + file.originalname.split('.')[1])
+    cb(null, bodyData.orderId + '.complete' + '.pdf')
   }
 })
 

@@ -15,6 +15,10 @@ router.post('/', function(req, res) {
     square = '', 
     storeys = '', 
     height = '',
+    p1 = '',
+    p2 = '',
+    p3 = '',
+    p4 = '',
     description = '',
     customer = '',
     status = '',
@@ -61,10 +65,10 @@ router.post('/', function(req, res) {
       expertiseDays: expertDays,
       expertiseCoast: expertCoast,
       objectData: {
-        constructionType: "Новое здание",
-        region: "Екатеринбург",
-        type: "Промышленне здания",
-        spec: "Складские помещения"
+        constructionType: p1 ? p1 : "Не указано",
+        region: p2 ? p2 : "Не указано",
+        type: p3 ? p3 : "Не указано",
+        spec: p4 ? p4 : "Не указано",
       },
       objectParams: {
         square,
