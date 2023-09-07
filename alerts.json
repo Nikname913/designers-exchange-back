@@ -1,0 +1,297 @@
+{"list": [
+  { 
+    "type": "sys",
+    "title": "Регистрация в системе",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "AUTH_NEW" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Смена пароля",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "PASS_EDIT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Подтверждение номера телефона",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "NUM_AUTH" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Ответ на почту от поддержки",
+    "actions": [
+      {
+        "inner": "Прочитать",
+        "callback": "null",
+        "init": [ "SUPPORT_RESPOND" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Операции с кошельком",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "PAY_INFO" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Информирование о соединении с сетью",
+    "actions": [
+      {
+        "inner": "Офлайн режим",
+        "callback": "null",
+        "init": [ "CONNECT_OFF" ]
+      },
+      {
+        "inner": "Онлайн режим",
+        "callback": "null",
+        "init": [ "CONNECT_ON" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Внесение настроек в работу уведомлений",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "ALERTS_EDIT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Уведомление о смене статуса задания",
+    "actions": [
+      {
+        "inner": "Перейти в задание",
+        "callback": "null",
+        "init": [ "TASK_STATUS" ]
+      }
+    ] 
+  },
+  { 
+    "type": "sys",
+    "title": "Изменение информации в личном кабинете",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "USER_INFO_EDIT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Произошел отклик на проект",
+    "actions": [
+      {
+        "inner": "Посмотреть отклик",
+        "callback": "null",
+        "init": [ "ORDER_RESPOND_CUST" ]
+      },
+      {
+        "inner": "Перейти в задание",
+        "callback": "null",
+        "init": [ "ORDER_RESPOND_CUST" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Выбор исполнителя в проект",
+    "actions": [
+      {
+        "inner": "Перейти в задание",
+        "callback": "null",
+        "init": [ "ORDER_RESPOND_EXEC_SUCCESS" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Ответ отказом на отклик",
+    "actions": [
+      {
+        "inner": "Перейти в задание",
+        "callback": "null",
+        "init": [ "ORDER_RESPOND_EXEC_NOT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Отмена отклика",
+    "actions": [
+      {
+        "inner": "Перейти в задание",
+        "callback": "null",
+        "init": [ "ORDER_RESPOND_CUST_SKIP" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Приглашение в команду",
+    "actions": [
+      {
+        "inner": "Перейти в заказ",
+        "callback": "null",
+        "init": [ "TEAM_INVITE" ]
+      },
+      {
+        "inner": "Посмотреть команду",
+        "callback": "null",
+        "init": [ "TEAM_INVITE" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Принятие приглашения в команду",
+    "actions": [
+      {
+        "inner": "Профиль исполнителя",
+        "callback": "null",
+        "init": [ "TEAM_INVITE_ACCEPT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "order",
+    "title": "Отказ от приглашения в команду",
+    "actions": [
+      {
+        "inner": "Профиль исполнителя",
+        "callback": "null",
+        "init": [ "TEAM_INVITE_NOT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Сообщение о смене состава команды в проекте",
+    "actions": [
+      {
+        "inner": "Посмотреть команду",
+        "callback": "null",
+        "init": [ "TEAN_ACCEPT_PERSON" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Сообщение о факте приглашения кого-либо в команду проекта",
+    "actions": [
+      {
+        "inner": "Посмотреть команду",
+        "callback": "null",
+        "init": [ "TEAN_NEW_PERSON" ]
+      },
+      {
+        "inner": "Посмотреть исполнителя",
+        "callback": "null",
+        "init": [ "TEAN_NEW_PERSON" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Добавление документа-договора в разделе мастер документов",
+    "actions": [
+      {
+        "inner": "Скачать файл",
+        "callback": "null",
+        "init": [ "ORDER_NEW_CONTRACT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Добавление вложений в том же разделе",
+    "actions": [
+      {
+        "inner": "Скачать файл",
+        "callback": "null",
+        "init": [ "ORDER_NEW_FILE" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Сообщение о внесении предложения на дополнительное соглашение",
+    "actions": [
+      {
+        "inner": "Открыть в новом окне",
+        "callback": "null",
+        "init": [ "ORDER_NEW_ACCEPT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Сообщение о принятии или непринятии нового допсоглашения",
+    "actions": [
+      {
+        "inner": "Понятно",
+        "callback": "null",
+        "init": [ "ORDER_NEW_ACCEPT_RESULT" ]
+      },
+      {
+        "inner": "Составить новое соглашение",
+        "callback": "null",
+        "init": [ "ORDER_NEW_ACCEPT_RESULT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Сообщение об открытии спора по проекту",
+    "actions": [
+      {
+        "inner": "Посмотреть карточку спора",
+        "callback": "null",
+        "init": [ "ORDER_NEW_CONFLICT" ]
+      }
+    ] 
+  },
+  { 
+    "type": "communication",
+    "title": "Экспертиза ( отправка проекта на проверку )",
+    "actions": [
+      {
+        "inner": "Исполнитель сдал проект",
+        "callback": "null",
+        "init": [ "ORDER_COMPLETE" ]
+      },
+      {
+        "inner": "Скачать проект",
+        "callback": "null",
+        "init": [ "ORDER_COMPLETE" ]
+      }
+    ] 
+  }
+  
+]}

@@ -18,9 +18,12 @@ liveReloadServer.server.once("connection", () => {
 })
 
 var defaultRouter = require('./routes/default')
-var showSupportPage = require('./routes/admin/usersSupport')
 var appDataPage = require('./routes/admin/appData')
+var appTasksPage = require('./routes/admin/appTasks')
+var appSupportPage = require('./routes/admin/appSupport')
+var appOnlinePage = require('./routes/admin/appOnline')
 var sendSupportMessage = require('./routes/admin/messageSupport')
+var ping = require('./routes/admin/usersPing')
 
 // ----------------------------------------
 // ----------------------------------------
@@ -32,6 +35,8 @@ var usersAddCompanyRouter = require('./routes/users/usersAddCompany')
 var usersRemoveRouter = require('./routes/users/usersRemove')
 var usersAddBorth = require('./routes/users/usersAddBorth')
 var usersAddCase = require('./routes/users/usersAddCase')
+var usersAddEducation = require('./routes/users/usersAddEducation')
+var usersAddSkill = require('./routes/users/usersAddSkill')
 var usersChangeAvatar = require('./routes/users/usersChangeAvatar')
 var usersChangeSpec = require('./routes/users/usersChangeSpec')
 var usersChangeAbout = require('./routes/users/usersChangeAbout')
@@ -102,14 +107,19 @@ app.use(function (req, res, next) {
 // ----------------------------------------
 
 app.use('/', defaultRouter)
-app.use('/8000/support', showSupportPage)
+app.use('/8000/support', appSupportPage)
 app.use('/8000/data', appDataPage)
+app.use('/8000/tasks', appTasksPage)
+app.use('/8000/logs', appOnlinePage)
 app.use('/8000/sendSupportMessage', sendSupportMessage)
+app.use('/8000/pingMarkOne', ping)
 
 app.use('/users', usersGetRouter)
 app.use('/add-user', usersAddRouter)
 app.use('/add-user-docs', usersAddDocsRouter)
 app.use('/add-user-case', usersAddCase)
+app.use('/add-user-education', usersAddEducation)
+app.use('/add-user-skill', usersAddSkill)
 app.use('/add-user-company', usersAddCompanyRouter)
 app.use('/add-user-borth', usersAddBorth)
 app.use('/remove-user', usersRemoveRouter)

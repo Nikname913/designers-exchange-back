@@ -92,7 +92,8 @@ const css = {
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    height: 80px;
+    padding-top: 20px;
+    padding-bottom: 21px;
     padding-left: 18px;
     border-bottom: 1px solid #D9E7F0;
   `,
@@ -129,7 +130,7 @@ const newCss = {
     box-sizing: border-box;
     font-size: 14px;
     margin-top: 50px;
-    margin-bottom: 14px;
+    margin-bottom: 22px;
     padding-left: 200px;
     padding-right: 200px;
   `,
@@ -149,7 +150,7 @@ const newCss = {
 
 const AppDataPage = (data) => {
 
-  const { USERS } = data
+  const { TASKS } = data
 
   const CONTENT = `
     <script>
@@ -184,20 +185,20 @@ const AppDataPage = (data) => {
       }, 1000)
     </script>
     <div style="${ newCss.header }">
-      <h3 style="${ css.pageTilte }">Пользователи в системе</h3>
+      <h3 style="${ css.pageTilte }">Задания и заказы в системе</h3>
     </div>
     <div style="${ newCss.topMenu }">
       <span style="${ css.menuItem }">
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/#">Начало</a>
       </span>
       <span style="${ css.menuItem }">
-        <a style="text-decoration: none; color: rgb(22, 124, 191); opacity: 0.8;" href="/8000/data">Пользователи</a>
+        <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/data">Пользователи</a>
       </span>
       <span style="${ css.menuItem }">
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/support">Запросы в поддержку</a>
       </span>
       <span style="${ css.menuItem }">
-        <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/tasks">Заказы в системе</a>
+        <a style="text-decoration: none; color: rgb(22, 124, 191); opacity: 0.8;" href="/8000/tasks">Заказы в системе</a>
       </span>
       <span style="${ css.menuItem }">
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/#">Подтверждение данных</a>
@@ -238,16 +239,17 @@ const AppDataPage = (data) => {
             text-align: left;
             font-size: 15px;
             font-weight: bold;
-          ">Название или имя</span>
+            padding-right: 80px;
+          ">Название задания</span>
           <img
             alt=""
-            src="http://85.193.88.125:3000/image/userRole.svg"
+            src="http://85.193.88.125:3000/image/userValidate.svg"
             style="margin-top: -3px; margin-left: 0px; margin-right: 33px;"
           />
           <img
             alt=""
             src="http://85.193.88.125:3000/image/userValidate.svg"
-            style="margin-top: -3px; margin-left: 0px; filter: grayscale(1);"
+            style="margin-top: -3px; margin-left: 0px;"
           />
         <span 
           style="
@@ -261,14 +263,14 @@ const AppDataPage = (data) => {
             margin-right: 60px;
             font-size: 15px;
             font-weight: bold;
-          ">Статус</span>
-        <span style="font-size: 15px; width: 130px; text-align: center; font-weight: bold;">Регистрация</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Заказы</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Активные</span>
+          ">Стоимость</span>
+        <span style="font-size: 15px; width: 130px; text-align: center; font-weight: bold;">Выполнение</span>
+        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Отклики</span>
+        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Создано</span>
         <span style="${ css.useItemDelimiter }"></span>
       </div>
 
-      ${ USERS.map((user, index) => {
+      ${ TASKS.map((task, index) => {
 
         const userSpan = `
         
@@ -296,7 +298,7 @@ const AppDataPage = (data) => {
                 box-sizing: border-box;
                 width: 120px;
                 text-align: center;
-              ">UR-0${ ( index + 1 ) }</span>
+              ">OR-0${ ( index + 1 ) }</span>
             <span 
               style="
                 display: block; 
@@ -306,11 +308,13 @@ const AppDataPage = (data) => {
                 width: 330px;
                 text-align: left;
                 font-size: 15px;
-              ">${ user.bio.name !== user.bio.surname ? user.bio.name + ' ' + user.bio.surname : user.bio.name }</span>
+                padding-right: 80px;
+                line-height: 23px;
+              ">${ task.title ? task.title : 'Название не указано' }</span>
             <img
               alt=""
-              src="http://85.193.88.125:3000/image/userRole.svg"
-              style="margin-top: -3px; margin-left: 0px; margin-right: 33px;"
+              src="http://85.193.88.125:3000/image/userValidate.svg"
+              style="margin-top: -3px; margin-left: 0px; margin-right: 33px; filter: grayscale(1);"
             />
             <img
               alt=""
@@ -322,7 +326,7 @@ const AppDataPage = (data) => {
                 position: relative; 
                 width: 150px; 
                 height: 36px; 
-                line-height: 33.4px;
+                line-height: 34.4px;
                 background-color: #D9E7F0;
                 border-radius: 8px;
                 font-size: 13px;
@@ -330,21 +334,15 @@ const AppDataPage = (data) => {
                 margin-left: 60px;
                 margin-right: 60px;
                 letter-spacing: 1.4px;
+                font-weight: bold;
               "
-            >${ user.faceType }</span>
-            <span style="font-size: 15px; width: 130px; text-align: center;">Нет данных</span>
-            <span style="font-size: 15px; width: 110px; text-align: center;">0</span>
-            <span style="font-size: 15px; width: 110px; text-align: center;">0</span>
+            >${ task.coast ? task.coast : 0 }</span>
+            <span style="font-size: 14px; width: 130px; text-align: center;">
+              <p style="margin: 0px; margin-bottom: 3.4px;">${ task.dates.start }</p> по <p style="margin: 0px; margin-top: 4px;">${ task.dates.finish }</p>
+            </span>
+            <span style="font-size: 14px; width: 110px; text-align: center;">${ task.reviews.length }</span>
+            <span style="font-size: 14px; width: 110px; text-align: center;">${ task.date }</span>
             <span style="${ css.useItemDelimiter }"></span>
-            <span 
-              style="
-                display: none; 
-                position: relative; 
-                margin-bottom: 3px; 
-                box-sizing: border-box;
-                width: 180px;
-                text-align: left;
-              ">Пользователь - ${ user.type === 'CUSTOMER' ? 'Заказчик' : 'Исполнитель' }</span>
           </div>
         
         `

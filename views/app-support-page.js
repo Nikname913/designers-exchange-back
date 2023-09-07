@@ -184,17 +184,17 @@ const AppDataPage = (data) => {
       }, 1000)
     </script>
     <div style="${ newCss.header }">
-      <h3 style="${ css.pageTilte }">Пользователи в системе</h3>
+      <h3 style="${ css.pageTilte }">Обращения в техническую поддержку</h3>
     </div>
     <div style="${ newCss.topMenu }">
       <span style="${ css.menuItem }">
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/#">Начало</a>
       </span>
       <span style="${ css.menuItem }">
-        <a style="text-decoration: none; color: rgb(22, 124, 191); opacity: 0.8;" href="/8000/data">Пользователи</a>
+        <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/data">Пользователи</a>
       </span>
       <span style="${ css.menuItem }">
-        <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/support">Запросы в поддержку</a>
+        <a style="text-decoration: none; color: rgb(22, 124, 191); opacity: 0.8;" href="/8000/support">Запросы в поддержку</a>
       </span>
       <span style="${ css.menuItem }">
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/tasks">Заказы в системе</a>
@@ -238,34 +238,18 @@ const AppDataPage = (data) => {
             text-align: left;
             font-size: 15px;
             font-weight: bold;
-          ">Название или имя</span>
-          <img
-            alt=""
-            src="http://85.193.88.125:3000/image/userRole.svg"
-            style="margin-top: -3px; margin-left: 0px; margin-right: 33px;"
-          />
-          <img
-            alt=""
-            src="http://85.193.88.125:3000/image/userValidate.svg"
-            style="margin-top: -3px; margin-left: 0px; filter: grayscale(1);"
-          />
-        <span 
-          style="
-            display: block; 
-            position: relative; 
-            width: 150px;
-            margin-bottom: 3px; 
-            box-sizing: border-box;
-            text-align: center;
-            margin-left: 60px;
-            margin-right: 60px;
-            font-size: 15px;
-            font-weight: bold;
-          ">Статус</span>
-        <span style="font-size: 15px; width: 130px; text-align: center; font-weight: bold;">Регистрация</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Заказы</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Активные</span>
-        <span style="${ css.useItemDelimiter }"></span>
+          ">Имя пользователя</span>
+          <span 
+            style="
+              display: block; 
+              position: relative; 
+              margin-bottom: 3px; 
+              box-sizing: border-box;
+              width: 600px;
+              text-align: center;
+              font-size: 15px;
+              font-weight: bold;
+            ">Сообщение пользователя</span>
       </div>
 
       ${ USERS.map((user, index) => {
@@ -306,45 +290,18 @@ const AppDataPage = (data) => {
                 width: 330px;
                 text-align: left;
                 font-size: 15px;
-              ">${ user.bio.name !== user.bio.surname ? user.bio.name + ' ' + user.bio.surname : user.bio.name }</span>
-            <img
-              alt=""
-              src="http://85.193.88.125:3000/image/userRole.svg"
-              style="margin-top: -3px; margin-left: 0px; margin-right: 33px;"
-            />
-            <img
-              alt=""
-              src="http://85.193.88.125:3000/image/userValidate.svg"
-              style="margin-top: -3px; margin-left: 0px; filter: grayscale(1);"
-            />
-            <span 
-              style="display: block; 
-                position: relative; 
-                width: 150px; 
-                height: 36px; 
-                line-height: 33.4px;
-                background-color: #D9E7F0;
-                border-radius: 8px;
-                font-size: 13px;
-                text-align: center;
-                margin-left: 60px;
-                margin-right: 60px;
-                letter-spacing: 1.4px;
-              "
-            >${ user.faceType }</span>
-            <span style="font-size: 15px; width: 130px; text-align: center;">Нет данных</span>
-            <span style="font-size: 15px; width: 110px; text-align: center;">0</span>
-            <span style="font-size: 15px; width: 110px; text-align: center;">0</span>
-            <span style="${ css.useItemDelimiter }"></span>
+              ">${ user.userMail }</span>
             <span 
               style="
-                display: none; 
+                display: block; 
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 180px;
-                text-align: left;
-              ">Пользователь - ${ user.type === 'CUSTOMER' ? 'Заказчик' : 'Исполнитель' }</span>
+                width: 600px;
+                text-align: center;
+                font-size: 15px;
+                line-height: 23px;
+              ">${ user.message }</span>
           </div>
         
         `
