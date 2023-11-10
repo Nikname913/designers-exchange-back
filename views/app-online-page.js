@@ -139,7 +139,7 @@ const newCss = {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    position: relative;
+    position: absolute;
     width: 16px;
     height: 16px;
     border-radius: 4px;
@@ -227,9 +227,10 @@ const AppDataPage = (data) => {
             position: relative; 
             margin-bottom: 3px; 
             box-sizing: border-box;
-            width: 120px;
+            width: 15%;
             text-align: center;
             font-weight: bold;
+            margin-left: 16px;
           ">ID</span>
         <span 
           style="
@@ -237,7 +238,7 @@ const AppDataPage = (data) => {
             position: relative; 
             margin-bottom: 3px; 
             box-sizing: border-box;
-            width: 330px;
+            width: 35%;
             text-align: left;
             font-size: 15px;
             font-weight: bold;
@@ -248,7 +249,7 @@ const AppDataPage = (data) => {
               position: relative; 
               margin-bottom: 3px; 
               box-sizing: border-box;
-              width: 600px;
+              width: 45%;
               text-align: center;
               font-size: 15px;
               font-weight: bold;
@@ -281,8 +282,9 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 120px;
+                width: 15%;
                 text-align: center;
+                margin-left: 16px;
               ">UP-0${ ( index + 1 ) }</span>
             <span 
               style="
@@ -290,7 +292,7 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 330px;
+                width: 35%;
                 text-align: left;
                 font-size: 15px;
               ">${ user.time }</span>
@@ -300,7 +302,7 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 600px;
+                width: 45%;
                 text-align: center;
                 font-size: 15px;
                 line-height: 23px;

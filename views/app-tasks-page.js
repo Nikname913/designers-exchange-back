@@ -139,7 +139,7 @@ const newCss = {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    position: relative;
+    position: absolute;
     width: 16px;
     height: 16px;
     border-radius: 4px;
@@ -225,9 +225,10 @@ const AppDataPage = (data) => {
             position: relative; 
             margin-bottom: 3px; 
             box-sizing: border-box;
-            width: 120px;
+            width: 15%;
             text-align: center;
             font-weight: bold;
+            margin-left: 16px;
           ">ID</span>
         <span 
           style="
@@ -235,11 +236,11 @@ const AppDataPage = (data) => {
             position: relative; 
             margin-bottom: 3px; 
             box-sizing: border-box;
-            width: 330px;
+            width: 35%;
             text-align: left;
             font-size: 15px;
             font-weight: bold;
-            padding-right: 80px;
+            padding-right: 40px;
           ">Название задания</span>
           <img
             alt=""
@@ -255,18 +256,17 @@ const AppDataPage = (data) => {
           style="
             display: block; 
             position: relative; 
-            width: 150px;
+            width: 15%;
             margin-bottom: 3px; 
             box-sizing: border-box;
             text-align: center;
-            margin-left: 60px;
-            margin-right: 60px;
             font-size: 15px;
             font-weight: bold;
+            margin-left: 30px;
           ">Стоимость</span>
-        <span style="font-size: 15px; width: 130px; text-align: center; font-weight: bold;">Выполнение</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Отклики</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Создано</span>
+        <span style="font-size: 15px; width: 15%; text-align: center; font-weight: bold;">Выполнение</span>
+        <span style="font-size: 15px; width: 10%; text-align: center; font-weight: bold;">Отклики</span>
+        <span style="font-size: 15px; width: 10%; text-align: center; font-weight: bold;">Создано</span>
         <span style="${ css.useItemDelimiter }"></span>
       </div>
 
@@ -296,8 +296,9 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 120px;
+                width: 15%;
                 text-align: center;
+                margin-left: 16px;
               ">OR-0${ ( index + 1 ) }</span>
             <span 
               style="
@@ -305,10 +306,10 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 330px;
+                width: 35%;
                 text-align: left;
                 font-size: 15px;
-                padding-right: 80px;
+                padding-right: 40px;
                 line-height: 23px;
               ">${ task.title ? task.title : 'Название не указано' }</span>
             <img
@@ -324,24 +325,23 @@ const AppDataPage = (data) => {
             <span 
               style="display: block; 
                 position: relative; 
-                width: 150px; 
+                width: 15%; 
                 height: 36px; 
                 line-height: 34.4px;
                 background-color: #D9E7F0;
                 border-radius: 8px;
                 font-size: 13px;
                 text-align: center;
-                margin-left: 60px;
-                margin-right: 60px;
                 letter-spacing: 1.4px;
                 font-weight: bold;
+                margin-left: 30px;
               "
             >${ task.coast ? task.coast : 0 }</span>
-            <span style="font-size: 14px; width: 130px; text-align: center;">
+            <span style="font-size: 14px; width: 15%; text-align: center;">
               <p style="margin: 0px; margin-bottom: 3.4px;">${ task.dates.start }</p> по <p style="margin: 0px; margin-top: 4px;">${ task.dates.finish }</p>
             </span>
-            <span style="font-size: 14px; width: 110px; text-align: center;">${ task.reviews.length }</span>
-            <span style="font-size: 14px; width: 110px; text-align: center;">${ task.date }</span>
+            <span style="font-size: 14px; width: 10%; text-align: center;">${ task.reviews.length }</span>
+            <span style="font-size: 14px; width: 10%; text-align: center;">${ task.date }</span>
             <span style="${ css.useItemDelimiter }"></span>
           </div>
         

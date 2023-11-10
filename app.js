@@ -22,6 +22,7 @@ var appDataPage = require('./routes/admin/appData')
 var appTasksPage = require('./routes/admin/appTasks')
 var appSupportPage = require('./routes/admin/appSupport')
 var appOnlinePage = require('./routes/admin/appOnline')
+var appApiMethods = require('./routes/admin/appApiMethods')
 var sendSupportMessage = require('./routes/admin/messageSupport')
 var ping = require('./routes/admin/usersPing')
 
@@ -111,6 +112,7 @@ app.use('/8000/support', appSupportPage)
 app.use('/8000/data', appDataPage)
 app.use('/8000/tasks', appTasksPage)
 app.use('/8000/logs', appOnlinePage)
+app.use('/8000/methods', appApiMethods)
 app.use('/8000/sendSupportMessage', sendSupportMessage)
 app.use('/8000/pingMarkOne', ping)
 
@@ -227,4 +229,6 @@ app.use(function(err, req, res, next) {
   res.send(err.message)
 });
 
-module.exports = app
+// ----------------------------------------
+// module.exports = app
+// ----------------------------------------

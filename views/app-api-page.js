@@ -1,3 +1,4 @@
+var fs = require('fs')
 const css = {
   contentContainer: `
     display: flex;
@@ -147,9 +148,66 @@ const newCss = {
   `
 }
 
-const AppDataPage = (data) => {
+const AppDataPage = () => {
 
-  const { USERS } = data
+  const METHODS = [
+    [ '/users', 'получение списка пользователей, с возможность формировать выборки' ],
+    [ '/add-user', 'добавление нового пользователя в систему' ],
+    [ '/add-user-docs', 'добавление полных данных о пользователе, добавление полных данных о компании или ип, взаимодействие с API налоговой службы' ],
+    [ '/add-user-case', 'добавление нового проекта портфолио для пользователя обеих ролей' ],
+    [ '/add-user-education', 'добавление информации о месте обучения пользователя' ],
+    [ '/add-user-skill', 'добавление информации о месте работы пользователя' ],
+    [ '/add-user-company', 'дублирующий метод для add-user-docs' ],
+    [ '/add-user-borth', 'добавление даты рождения пользователя' ],
+    [ '/remove-user', 'удаление пользователя из системы - фактически присвоение специального идентификатора' ],
+    [ '/change-user-avatar', 'изменение аватара пользователя' ],
+    [ '/change-user-spec', 'изменение специализации пользователя' ],
+    [ '/change-user-about', 'изменение общей информации пользователя' ],
+    
+    [ '/auth', 'авторизация пользователя в системе - ветка почта' ],
+    [ '/auth-number', 'авторизация пользователя в системе - ветка мобильный телефон' ],
+    [ '/check-auth', 'проверка авторизационных данных, проверка данных при регистрации' ],
+    [ '/restore-pass', 'восстановление пароля' ],
+    
+    [ '/add-task', 'добавление нового задания в систему' ],
+    [ '/edit-task', 'редактирование задания' ],
+    [ '/get-task', 'получение конкретного задания - с модификаторами выбора' ],
+    [ '/get-task-list', 'получение списка всех заданий' ],
+    [ '/change-task-status', 'изменение статуса задания в системе' ],
+
+    [ '/add-respond', 'добавление нового отклика в задание' ],
+    [ '/add-executor-in-task', 'добавление главного исполнителя в задание' ],
+    [ '/remove-respond-one', 'удаление отклика из задания - для обеих ролей' ],
+    [ '/remove-respond', 'удаление всех откликов из задания' ],
+    [ '/order-team', 'метод для работы с командой заказа' ],
+    [ '/order-complete', 'прием задания как выполненного заказа' ],
+    [ '/order-complete-chapter', 'прием задания как выполненного заказа - пошагово сдавая разделы' ],
+    [ '/order-complete-rate', 'присвоение рейтинга пользователю после выполненения заказа' ],
+    [ '/order-complete-review', 'возможность оставить отзыв на пользователя или заказ после выполнения всего проекта' ],
+
+    [ '/add-alarm-in-task', 'добавление уведомления в заказ - для всех участников проекта' ],
+    [ '/add-alarm-system', 'добавление системного уведомления для одного пользователя' ],
+    [ '/remove-alarm-system', 'удаление системного уведомления, либо его скрытие' ],
+    [ '/remove-alarm-task', 'отметка прочитано на уведомление в заказе' ],
+
+    [ '/add-file-avatar', 'сохранение файла аватарки в соответствующую директорию сервера, переименование, сжатие' ],
+    [ '/add-file-contract', 'сохранение файла договора в соответствующую директорию сервера, его переименование' ],
+    [ '/add-file-complete', 'сохранение файла проекта на проверку в соответствующую директорию сервера, его переименование' ],
+    [ '/add-file-case', 'сохранение файла портфолио в соответствующую директорию сервера, переименование, сжатие' ],
+
+    [ '/send-file-techtask', 'отправка файла на клиентскую часть - техническое задание' ],
+    [ '/send-file-contract', 'отправка файла на клиентскую часть - файл договора' ],
+    [ '/send-file-complete', 'отправка файла на клиентскую часть - файл выполненного проекта' ],
+
+    [ '/check-face', 'проверка введенного юридического лица через базу апи налоговой службы при регистрации' ],
+
+    [ '/8000/sendSupportMessage', 'отправка сообщения в техподдержку' ],
+    [ '/8000/pingMarkOne', 'логика работы отслеживания онлайна' ],
+    [ '/8000/sendFromSupportMessage', 'отправка сообщения от техподдержки на почту пользователя - в ответ на сообщение или заявку' ],
+    [ '/8000/sendLawlerMessage', 'отправка сообщения юристу, иное взаимодействие с юристами' ],
+  ]
+
+  const users = JSON.parse(fs.readFileSync('./dataBase/auth.json', 'utf-8'))
 
   const CONTENT = `
     <script>
@@ -184,7 +242,7 @@ const AppDataPage = (data) => {
       }, 1000)
     </script>
     <div style="${ newCss.header }">
-      <h3 style="${ css.pageTilte }">Обращения в техническую поддержку</h3>
+      <h3 style="${ css.pageTilte }">Активность пользователей в системе</h3>
     </div>
     <div style="${ newCss.topMenu }">
       <span style="${ css.menuItem }">
@@ -194,7 +252,7 @@ const AppDataPage = (data) => {
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/data">Пользователи</a>
       </span>
       <span style="${ css.menuItem }">
-        <a style="text-decoration: none; color: rgb(22, 124, 191); opacity: 0.8;" href="/8000/support">Запросы в поддержку</a>
+        <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/support">Запросы в поддержку</a>
       </span>
       <span style="${ css.menuItem }">
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/tasks">Заказы в системе</a>
@@ -209,160 +267,10 @@ const AppDataPage = (data) => {
         <a style="text-decoration: none; color: black; opacity: 0.8;" href="/#">Методы API</a>
       </span>
       <span style="${ css.menuItem }">
-        <a style="text-decoration: none; color: black; opacity: 0.8;" href="/8000/logs">Активность</a>
+        <a style="text-decoration: none; color: rgb(22, 124, 191); opacity: 0.8;" href="/8000/logs">Активность</a>
       </span>
     </div>
     <div style="${ css.usersContainer }">
-
-      <div 
-        style="
-          display: flex; 
-          flex-direction: row; 
-          justify-content: 
-          flex-start; width: 100%;
-          margin-top: 13px;
-          margin-bottom: 13px;
-        "
-      >
-        <h3 style="display: block; margin: 0px;">Запросы в поддержку</h3>
-        <span
-          style="
-            font-size: 15px;
-            display: block;
-            margin: 0px;
-            opacity: 0.6;
-            margin-top: 3px;
-            margin-left: 22px;
-          "  
-        >От пользователей системы</span>
-      </div>
-      <div 
-        style="
-          display: flex; 
-          flex-direction: row; 
-          justify-content: flex-start;
-          align-items: center; 
-          width: 100%;
-          margin-top: 13px;
-          margin-bottom: 13px;
-        "
-      >
-        <span
-          style="
-            font-size: 15px;
-            display: block;
-            position: relative;
-            margin: 0px;
-            opacity: 0.6;
-            margin-top: 3px;
-          "  
-        >Новые</span>
-        <span
-          style="
-            font-size: 15px;
-            display: block;
-            position: relative;
-            margin: 0px;
-            opacity: 0.6;
-            margin-top: 3px;
-            margin-left: 22px;
-          "  
-        >В работе</span>
-        <span
-          style="
-            font-size: 15px;
-            display: block;
-            position: relative;
-            margin: 0px;
-            opacity: 0.6;
-            margin-top: 3px;
-            margin-left: 22px;
-          "  
-        >Архивные</span>
-        <div>
-          <input
-            placeholder="Найти сообщение"
-            type="text"
-            style="
-              display: block;
-              border: none;
-              outline: none;
-              border: 1px solid #D9E7F0;
-              border-radius: 4px;
-              width: 260px;
-              height: 44px;
-              margin-top: 4px;
-              margin-left: 200px;
-              padding-left: 14px;
-              font-size: 14px;
-              letter-spacing: 0.6px;
-            "
-          />
-          <input
-            id="user-admin-action"
-            placeholder="Выбрать действие"
-            type="text"
-            style="
-              display: block;
-              border: none;
-              outline: none;
-              border: 1px solid #D9E7F0;
-              border-radius: 4px;
-              width: 260px;
-              height: 44px;
-              margin-top: 8px;
-              margin-left: 200px;
-              padding-left: 14px;
-              font-size: 14px;
-              letter-spacing: 0.6px;
-            "
-          />
-          <span
-            style="
-              display: block;
-              border: none;
-              box-sizing: border-box;
-              outline: none;
-              border: 1px solid #D9E7F0;
-              border-radius: 4px;
-              width: 260px;
-              height: 44px;
-              line-height: 40px;
-              margin-top: 8px;
-              margin-left: 200px;
-              padding-left: 14px;
-              font-size: 14px;
-              letter-spacing: 0.6px;
-              cursor: pointer;
-            "
-            onclick="
-              document.getElementById('user-admin-action').value = 'Заблокировать'
-            "
-          >Отправить в архив</span>
-          <span
-            style="
-              display: block;
-              border: none;
-              box-sizing: border-box;
-              outline: none;
-              border: 1px solid #D9E7F0;
-              border-radius: 4px;
-              width: 260px;
-              height: 44px;
-              line-height: 40px;
-              margin-top: 8px;
-              margin-left: 200px;
-              padding-left: 14px;
-              font-size: 14px;
-              letter-spacing: 0.6px;
-              cursor: pointer;
-            "
-            onclick="
-              document.getElementById('user-admin-action').value = 'Полностью удалить'
-            "
-          >Полностью удалить</span>
-        </div>
-      </div>
 
       <div style="${ css.userItem }">
 
@@ -389,7 +297,7 @@ const AppDataPage = (data) => {
             text-align: left;
             font-size: 15px;
             font-weight: bold;
-          ">Имя пользователя</span>
+          ">Название метода</span>
           <span 
             style="
               display: block; 
@@ -400,12 +308,12 @@ const AppDataPage = (data) => {
               text-align: center;
               font-size: 15px;
               font-weight: bold;
-            ">Сообщение пользователя</span>
+            ">Краткое описание работы метода</span>
       </div>
 
-      ${ USERS.map((user, index) => {
+      ${ METHODS.map((method, index) => {
 
-        const userSpan = `
+        const methodSpan = `
         
           <div style="${ css.userItem }">
 
@@ -432,7 +340,7 @@ const AppDataPage = (data) => {
                 width: 15%;
                 text-align: center;
                 margin-left: 16px;
-              ">UR-0${ ( index + 1 ) }</span>
+              ">M-0${ ( index + 1 ) }</span>
             <span 
               style="
                 display: block; 
@@ -442,7 +350,7 @@ const AppDataPage = (data) => {
                 width: 35%;
                 text-align: left;
                 font-size: 15px;
-              ">${ user.userMail }</span>
+              ">${ method[0] }</span>
             <span 
               style="
                 display: block; 
@@ -453,12 +361,14 @@ const AppDataPage = (data) => {
                 text-align: center;
                 font-size: 15px;
                 line-height: 23px;
-              ">${ user.message }</span>
+              ">${ method[1] }
+              <span style="display: none; position: absolute; color: gray; font-size: 12px; width: 100%; text-align: center;">M-0${ ( index + 1 ) }</span>  
+            </span>
           </div>
         
         `
 
-        return userSpan
+        return methodSpan
 
       }).join('')}
     </div></div>

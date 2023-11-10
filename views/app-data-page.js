@@ -138,7 +138,7 @@ const newCss = {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    position: relative;
+    position: absolute;
     width: 16px;
     height: 16px;
     border-radius: 4px;
@@ -214,6 +214,178 @@ const AppDataPage = (data) => {
     </div>
     <div style="${ css.usersContainer }">
 
+      <div 
+        style="
+          display: flex; 
+          flex-direction: row; 
+          justify-content: 
+          flex-start; width: 100%;
+          margin-top: 13px;
+          margin-bottom: 13px;
+        "
+      >
+        <h3 style="display: block; margin: 0px;">Пользователи в системе</h3>
+        <span
+          style="
+            font-size: 15px;
+            display: block;
+            margin: 0px;
+            opacity: 0.6;
+            margin-top: 3px;
+            margin-left: 22px;
+          "  
+        >Зарегистрированные</span>
+      </div>
+      <div 
+        style="
+          display: flex; 
+          flex-direction: row; 
+          justify-content: flex-start;
+          align-items: center; 
+          width: 100%;
+          margin-top: 13px;
+          margin-bottom: 13px;
+        "
+      >
+        <span
+          style="
+            font-size: 15px;
+            display: block;
+            position: relative;
+            margin: 0px;
+            opacity: 0.6;
+            margin-top: 3px;
+          "  
+        >Активные</span>
+        <span
+          style="
+            font-size: 15px;
+            display: block;
+            position: relative;
+            margin: 0px;
+            opacity: 0.6;
+            margin-top: 3px;
+            margin-left: 22px;
+          "  
+        >Блокированные</span>
+        <span
+          style="
+            font-size: 15px;
+            display: block;
+            position: relative;
+            margin: 0px;
+            opacity: 0.6;
+            margin-top: 3px;
+            margin-left: 22px;
+          "  
+        >Архивные</span>
+        <div>
+          <input
+            placeholder="Найти пользователя"
+            type="text"
+            style="
+              display: block;
+              border: none;
+              outline: none;
+              border: 1px solid #D9E7F0;
+              border-radius: 4px;
+              width: 260px;
+              height: 44px;
+              margin-top: 4px;
+              margin-left: 200px;
+              padding-left: 14px;
+              font-size: 14px;
+              letter-spacing: 0.6px;
+            "
+          />
+          <input
+            id="user-admin-action"
+            placeholder="Выбрать действие"
+            type="text"
+            style="
+              display: block;
+              border: none;
+              outline: none;
+              border: 1px solid #D9E7F0;
+              border-radius: 4px;
+              width: 260px;
+              height: 44px;
+              margin-top: 8px;
+              margin-left: 200px;
+              padding-left: 14px;
+              font-size: 14px;
+              letter-spacing: 0.6px;
+            "
+          />
+          <span
+            style="
+              display: block;
+              border: none;
+              box-sizing: border-box;
+              outline: none;
+              border: 1px solid #D9E7F0;
+              border-radius: 4px;
+              width: 260px;
+              height: 44px;
+              line-height: 40px;
+              margin-top: 8px;
+              margin-left: 200px;
+              padding-left: 14px;
+              font-size: 14px;
+              letter-spacing: 0.6px;
+              cursor: pointer;
+            "
+            onclick="
+              document.getElementById('user-admin-action').value = 'Заблокировать'
+            "
+          >Заблокировать</span>
+          <span
+            style="
+              display: block;
+              border: none;
+              box-sizing: border-box;
+              outline: none;
+              border: 1px solid #D9E7F0;
+              border-radius: 4px;
+              width: 260px;
+              height: 44px;
+              line-height: 40px;
+              margin-top: 8px;
+              margin-left: 200px;
+              padding-left: 14px;
+              font-size: 14px;
+              letter-spacing: 0.6px;
+              cursor: pointer;
+            "
+            onclick="
+              document.getElementById('user-admin-action').value = 'Полностью удалить'
+            "
+          >Полностью удалить</span>
+          <span
+            style="
+              display: block;
+              border: none;
+              box-sizing: border-box;
+              outline: none;
+              border: 1px solid #D9E7F0;
+              border-radius: 4px;
+              width: 260px;
+              height: 44px;
+              line-height: 40px;
+              margin-top: 8px;
+              margin-left: 200px;
+              padding-left: 14px;
+              font-size: 14px;
+              letter-spacing: 0.6px;
+              cursor: pointer;
+            "
+            onclick="
+              document.getElementById('user-admin-action').value = 'Сообщение на почту'
+            "
+          >Сообщение на почту</span>
+        </div>
+      </div>
+
       <div style="${ css.userItem }">
 
         <span class="user-item-all" style="${ newCss.selectIcon }"></span>
@@ -224,9 +396,10 @@ const AppDataPage = (data) => {
             position: relative; 
             margin-bottom: 3px; 
             box-sizing: border-box;
-            width: 120px;
+            width: 15%;
             text-align: center;
             font-weight: bold;
+            margin-left: 16px;
           ">ID</span>
         <span 
           style="
@@ -234,7 +407,7 @@ const AppDataPage = (data) => {
             position: relative; 
             margin-bottom: 3px; 
             box-sizing: border-box;
-            width: 330px;
+            width: 35%;
             text-align: left;
             font-size: 15px;
             font-weight: bold;
@@ -253,18 +426,17 @@ const AppDataPage = (data) => {
           style="
             display: block; 
             position: relative; 
-            width: 150px;
+            width: 15%;
             margin-bottom: 3px; 
             box-sizing: border-box;
             text-align: center;
-            margin-left: 60px;
-            margin-right: 60px;
             font-size: 15px;
             font-weight: bold;
+            margin-left: 30px;
           ">Статус</span>
-        <span style="font-size: 15px; width: 130px; text-align: center; font-weight: bold;">Регистрация</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Заказы</span>
-        <span style="font-size: 15px; width: 110px; text-align: center; font-weight: bold;">Активные</span>
+        <span style="font-size: 15px; width: 15%; text-align: center; font-weight: bold;">Регистрация</span>
+        <span style="font-size: 15px; width: 10%; text-align: center; font-weight: bold;">Заказы</span>
+        <span style="font-size: 15px; width: 10%; text-align: center; font-weight: bold;">Активные</span>
         <span style="${ css.useItemDelimiter }"></span>
       </div>
 
@@ -294,8 +466,9 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 120px;
+                width: 15%;
                 text-align: center;
+                margin-left: 16px;
               ">UR-0${ ( index + 1 ) }</span>
             <span 
               style="
@@ -303,7 +476,7 @@ const AppDataPage = (data) => {
                 position: relative; 
                 margin-bottom: 3px; 
                 box-sizing: border-box;
-                width: 330px;
+                width: 35%;
                 text-align: left;
                 font-size: 15px;
               ">${ user.bio.name !== user.bio.surname ? user.bio.name + ' ' + user.bio.surname : user.bio.name }</span>
@@ -320,21 +493,20 @@ const AppDataPage = (data) => {
             <span 
               style="display: block; 
                 position: relative; 
-                width: 150px; 
+                width: 15%; 
                 height: 36px; 
                 line-height: 33.4px;
                 background-color: #D9E7F0;
                 border-radius: 8px;
                 font-size: 13px;
                 text-align: center;
-                margin-left: 60px;
-                margin-right: 60px;
                 letter-spacing: 1.4px;
+                margin-left: 30px;
               "
             >${ user.faceType }</span>
-            <span style="font-size: 15px; width: 130px; text-align: center;">Нет данных</span>
-            <span style="font-size: 15px; width: 110px; text-align: center;">0</span>
-            <span style="font-size: 15px; width: 110px; text-align: center;">0</span>
+            <span style="font-size: 15px; width: 15%; text-align: center;">Нет данных</span>
+            <span style="font-size: 15px; width: 10%; text-align: center;">0</span>
+            <span style="font-size: 15px; width: 10%; text-align: center;">0</span>
             <span style="${ css.useItemDelimiter }"></span>
             <span 
               style="
