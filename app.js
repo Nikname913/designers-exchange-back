@@ -8,6 +8,7 @@ var connectLiveReload = require('connect-livereload')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var multer = require('multer')
+var fs = require('fs')
 
 const liveReloadServer = livereload.createServer()
 
@@ -168,6 +169,9 @@ app.use('/check-face', checkFaceName)
 
 let bodyData = ''
 
+const tasksData = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
+const tasksFile = './dataBase/tasks.json'
+
 const storage1 = multer.diskStorage({
 
   destination: function (req, file, cb) {
@@ -183,7 +187,36 @@ const storage1 = multer.diskStorage({
 
     if ( file.mimetype !== 'image/jpeg' ) {
 
-      cb(null, bodyData.taskTechDocsId + '.techtask' + '.' + file.originalname.split('.')[1])
+      const tasksDataFilter = tasksData.tasks.filter(item => { 
+        
+        if ( item.taskID.indexOf(bodyData.taskTechDocsId) !== -1 && item.taskID.indexOf('-new') !== -1 ) {
+
+          console.log(item)
+          return item
+
+        }
+      
+      })
+
+      const tasksDataChange = tasksData.tasks.forEach(item => { 
+        
+        if ( item.taskID.indexOf(bodyData.taskTechDocsId) !== -1 && item.taskID.indexOf('-new') !== -1 ) {
+
+          item.taskID = item.taskID.split('-new')[0]
+
+        }
+      
+      })
+
+      const taskName = tasksDataFilter[0].taskID
+
+      cb(null, taskName + '.techtask' + '.' + file.originalname.split('.')[1])
+
+      fs.writeFile(tasksFile, JSON.stringify(tasksDataChange), error => {
+
+        if (error) throw error
+      
+      })
 
     } else {
 

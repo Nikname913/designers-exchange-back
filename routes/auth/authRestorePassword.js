@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
       })
     
       transporter.sendMail({
-        from: 'nik.shipov@gmail.com',
+        from: 'techsystems.exchange@gmail.com',
         to: email,
         subject: 'Биржа проектировщиков, восстановление пароля',
         text: `Здравствуйте, ваш пароль от аккаунта - ${user.password}`,

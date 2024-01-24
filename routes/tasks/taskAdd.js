@@ -46,7 +46,7 @@ router.post('/', function(req, res) {
 
     let tasksData = JSON.parse(fs.readFileSync('./dataBase/tasks.json', 'utf-8'))
     let taskItem = {
-      taskID: taskDate + '-NTID-' + taskId,
+      taskID: taskDate + '-NTID-' + taskId + '-new',
       customer,
       executor: "Исполнитель не выбран",
       date,

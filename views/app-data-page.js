@@ -414,12 +414,12 @@ const AppDataPage = (data) => {
           ">Название или имя</span>
           <img
             alt=""
-            src="http://85.193.88.125:3000/image/userRole.svg"
+            src="http://localhost:3000/image/userRole.svg"
             style="margin-top: -3px; margin-left: 0px; margin-right: 33px;"
           />
           <img
             alt=""
-            src="http://85.193.88.125:3000/image/userValidate.svg"
+            src="http://localhost:3000/image/userValidate.svg"
             style="margin-top: -3px; margin-left: 0px; filter: grayscale(1);"
           />
         <span 
@@ -482,12 +482,12 @@ const AppDataPage = (data) => {
               ">${ user.bio.name !== user.bio.surname ? user.bio.name + ' ' + user.bio.surname : user.bio.name }</span>
             <img
               alt=""
-              src="http://85.193.88.125:3000/image/userRole.svg"
+              src="http://localhost:3000/image/userRole.svg"
               style="margin-top: -3px; margin-left: 0px; margin-right: 33px;"
             />
             <img
               alt=""
-              src="http://85.193.88.125:3000/image/userValidate.svg"
+              src="http://localhost:3000/image/userValidate.svg"
               style="margin-top: -3px; margin-left: 0px; filter: grayscale(1);"
             />
             <span 

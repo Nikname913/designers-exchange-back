@@ -14,7 +14,7 @@ router.post('/', function(req, res) {
   users.users.forEach(user => {
     if ( user.clientId === clientId ) {
 
-      user.spec = [ spec ]
+      user.spec = spec
 
     }
   })
