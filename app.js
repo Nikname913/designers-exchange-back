@@ -1,14 +1,15 @@
 var createError = require('http-errors')
 var express = require('express')
-var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var livereload = require('livereload')
 var connectLiveReload = require('connect-livereload')
-var bodyParser = require('body-parser')
 var cors = require('cors')
 var multer = require('multer')
 var fs = require('fs')
+
+var path = require('path')
+var bodyParser = require('body-parser')
 
 const liveReloadServer = livereload.createServer()
 
@@ -27,8 +28,8 @@ var appApiMethods = require('./routes/admin/appApiMethods')
 var sendSupportMessage = require('./routes/admin/messageSupport')
 var ping = require('./routes/admin/usersPing')
 
-// ----------------------------------------
-// ----------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
 
 var usersGetRouter = require('./routes/users/usersGet')
 var usersAddRouter = require('./routes/users/usersAdd')
@@ -64,7 +65,6 @@ var alarmsAddRouter = require('./routes/dataAlarms/alarmAdd')
 var alarmsSystemAddRouter = require('./routes/dataAlarms/alarmSystemAdd')
 var alarmsSystemRemoveRouter = require('./routes/dataAlarms/alarmSystemRemove')
 
-var addFileTechTask = require('./routes/filesystem/addFile.techtask')
 var addFileOrderContract = require('./routes/filesystem/addFile.contract')
 var addFileOrderComplete = require('./routes/filesystem/addFile.complete')
 var addFileCase = require('./routes/filesystem/addFile.portfolio')
@@ -75,22 +75,27 @@ var userAvatarFile = require('./routes/filesystem/addFile.avatar')
 
 var checkFaceName = require('./routes/checkFaceName')
 
+var addMessageToChat = require('./routes/messages/sendMessage')
+var getMessageFromChat = require('./routes/messages/getMessage')
+
 var app = express()
 
 app.use(connectLiveReload())
 
+// ----------------------------------------------------------------
 // app.set('views', path.join(__dirname, 'views'))
 // app.set('view engine', 'jade')
+// ----------------------------------------------------------------
 
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-// ----------------------------------------
+// ----------------------------------------------------------------
 // app.use(bodyParser.json())
-// ----------------------------------------
+// ----------------------------------------------------------------
 // app.use(express.static(path.join(__dirname, 'public')))
-// ----------------------------------------
+// ----------------------------------------------------------------
 app.use(cors({ origin: true, credentials: true }))
 
 app.use(function (req, res, next) {
@@ -105,8 +110,8 @@ app.use(function (req, res, next) {
   } else { next() }
 })
 
-// ----------------------------------------
-// ----------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
 
 app.use('/', defaultRouter)
 app.use('/8000/support', appSupportPage)
@@ -155,17 +160,20 @@ app.use('/add-file-avatar', userAvatarFile)
 app.use('/add-file-contract', addFileOrderContract)
 app.use('/add-file-complete', addFileOrderComplete)
 app.use('/add-file-case', addFileCase)
-// ----------------------------------------
+// ----------------------------------------------------------------
 // app.use('/add-file-techtask', addFileTechTask)
-// ----------------------------------------
+// ----------------------------------------------------------------
 app.use('/send-file-techtask', sendFileTechTask)
 app.use('/send-file-contract', sendFileContract)
 app.use('/send-file-complete', sendFileComplete)
 
 app.use('/check-face', checkFaceName)
 
-// ----------------------------------------
-// ----------------------------------------
+app.use('/message-add', addMessageToChat)
+app.use('/message-get', getMessageFromChat)
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
 
 let bodyData = ''
 
@@ -243,9 +251,6 @@ app.post("/add-file-techtask", function (req, res, next) {
     res.send("Ошибка при загрузке файла")
 
   })
-
-// ----------------------------------------
-// ----------------------------------------
 
 app.use(function(req, res, next) {
   false && console.log(req)

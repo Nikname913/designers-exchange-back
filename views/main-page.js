@@ -67,7 +67,7 @@ const MainPage = ({ IP }) => {
     <script>
       setTimeout(() => { 
         document.body.style.margin = '0px'
-        document.body.style.fontFamily = '"Roboto", sans-serif'
+        document.body.style.fontFamily = '"Montserrat", sans-serif'
         document.body.style.backgroundColor = '#F7FAFC'
       })
     </script>
